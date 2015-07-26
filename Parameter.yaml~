@@ -1,0 +1,42 @@
+######################################################################
+#---"pixelwiseEstimation_node" Adjustments And Parameters---
+######################################################################
+
+#####Process frequency of the pixelwiseEstimation node [Hz]
+#####(System asks with that frequency for new keyFrames.)
+processFrequency:    5
+
+
+#####Depth measurement
+depthMin:                                     0.1
+depthMax:                                     2.0
+#should be non-inverse!!
+defaultDepthMean:                             1.5
+#should be non-inverse!! min = (max-min) range
+defaultDepthMin:                              1.0                     
+pixelStep:                                      1
+
+#####Certainty map
+kernelSize:                                     7
+spacialSigma:                                 3.0
+colorSigma:                                  10.0
+certaintyThreshold:                           0.5
+sigmaForNewSeed:                                2
+
+#####MSCSRBFinterpolation
+interpolationFrequency:                        10
+interpolationLevel:                             0
+interpolationError:                           0.0
+interpolationSmooth:                          0.0
+savePolygonAsPLY:                           false
+iterationForIntersection:                      20
+#intersectionThreshold:                      0.005
+intersectionThreshold:                     0.01
+
+
+
+
+#/////////////////////////////////////////////////////////////////////
+#---Publication---
+#/////////////////////////////////////////////////////////////////////
+referenceFrameName:   '/denseRecFrame'

@@ -1,0 +1,23 @@
+<launch>
+   <!-- Run usb_cam and make the images monochrome -->
+   <node name="usb_cam" pkg="usb_cam" type="usb_cam_node">
+            <rosparam param="video_device">/dev/video0</rosparam>
+   </node>
+   <node name="image_proc" pkg="image_proc" type="image_proc">
+            <remap from="image_raw" to="usb_cam/image_raw" />
+            <remap from="camera_info" to="usb_cam/camera_info" />
+   </node>
+
+   <!-- Run imageSubscriberAndPublish_node-->
+   <node  name="imageSubscriberAndPublisher_node" pkg="publisher_subscriber_example" type="imageSubscriberAndPublisher_node" clear_params="true" output="screen">
+            <rosparam file="$(find publisher_subscriber_example)/Parameter.yaml"/>
+   </node>
+
+   
+   <!-- Run image_view to display the edge image -->
+   <node  name="edge_image" pkg="image_view" type="edge_image" clear_params="true" output="screen">
+	     <remap from="image" to="/edgeImage"/>
+   </node>
+
+   
+</launch>
